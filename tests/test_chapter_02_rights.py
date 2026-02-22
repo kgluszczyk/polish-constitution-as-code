@@ -297,3 +297,43 @@ class TestArt55Extradition:
             validate_extradition(req)
         # Art. 55(4) should fire first, not 55(5)
         assert exc_info.value.article == "55(4)"
+
+    def test_human_rights_blocks_even_with_treaty(self):
+        """Art. 55(4) human-rights prohibition overrides treaty-based extradition."""
+        req = ExtraditionRequest(
+            subject_is_polish_citizen=True,
+            requesting_state_or_body="Some State",
+            based_on_ratified_treaty=True,
+            act_committed_abroad=True,
+            double_criminality=True,
+            violates_human_rights=True,
+            court_approved=True,
+        )
+        with pytest.raises(ExtraditionError, match="human rights") as exc_info:
+            validate_extradition(req)
+        assert exc_info.value.article == "55(4)"
+
+    def test_icc_genocide_blocked_by_human_rights(self):
+        """Art. 55(4) blocks even ICC genocide requests that violate human rights."""
+        req = ExtraditionRequest(
+            subject_is_polish_citizen=True,
+            requesting_state_or_body="International Criminal Court",
+            based_on_ratified_treaty=True,
+            international_judicial_body=True,
+            genocide_or_war_crime=True,
+            violates_human_rights=True,
+            court_approved=True,
+        )
+        with pytest.raises(ExtraditionError, match="human rights") as exc_info:
+            validate_extradition(req)
+        assert exc_info.value.article == "55(4)"
+
+    def test_non_citizen_no_treaty_needed(self):
+        """Non-citizens can be extradited without treaty basis (Art. 55(1) is citizen-only)."""
+        req = ExtraditionRequest(
+            subject_is_polish_citizen=False,
+            requesting_state_or_body="Country Y",
+            based_on_ratified_treaty=False,
+            court_approved=True,
+        )
+        assert validate_extradition(req) is True
