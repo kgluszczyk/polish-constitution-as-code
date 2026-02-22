@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 uv sync                              # install dependencies (dev group includes pytest, ruff, mypy)
-uv run pytest -v                     # run all 427 tests
+uv run pytest -v                     # run all 429 tests
 uv run pytest tests/test_chapter_04_sejm_senate.py -v   # run tests for one chapter
 uv run pytest -k "test_quorum" -v    # run tests matching a keyword
 uv run ruff check src tests          # lint (line-length 100, target py312)

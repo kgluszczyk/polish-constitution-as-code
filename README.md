@@ -2,7 +2,7 @@
 
 The Polish Constitution of 1997 (Konstytucja Rzeczypospolitej Polskiej) encoded as executable Python. Every constitutional rule — eligibility thresholds, voting majorities, legislative procedures, judicial independence, emergency powers, fiscal limits — becomes a function you can call, a constraint you can test, and a violation that raises a named exception citing the exact article.
 
-427 tests. 12 chapters. 2 amendments. Zero external dependencies.
+429 tests. 12 chapters. 2 amendments. Zero external dependencies.
 
 Based on the [official text](https://www.sejm.gov.pl/prawo/konst/polski/kon1.htm) published by the Sejm of the Republic of Poland.
 
@@ -23,7 +23,7 @@ The executable form also catches ambiguities. When you have to write `votes_for 
 
 ```bash
 uv sync                          # install dependencies
-uv run pytest -v                 # run all 427 tests
+uv run pytest -v                 # run all 429 tests
 uv run python examples/demo.py  # run 19 interactive scenarios
 ```
 

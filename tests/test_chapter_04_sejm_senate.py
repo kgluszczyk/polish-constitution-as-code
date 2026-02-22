@@ -88,6 +88,15 @@ class TestSenateEligibility:
         with pytest.raises(EligibilityError, match="at least 30"):
             check_senate_eligibility(citizen, date(2025, 10, 15))
 
+    def test_non_citizen(self, foreign_citizen, election_date):
+        with pytest.raises(EligibilityError, match="Polish citizen"):
+            check_senate_eligibility(foreign_citizen, election_date)
+
+    def test_criminal_record(self, convicted_citizen, election_date):
+        """Art. 99(3) [nowelizacja 2009]: Senate candidate cannot have criminal record."""
+        with pytest.raises(EligibilityError, match="intentional crime"):
+            check_senate_eligibility(convicted_citizen, election_date)
+
     def test_exactly_30(self):
         citizen = Citizen(
             name="Exact 30",
