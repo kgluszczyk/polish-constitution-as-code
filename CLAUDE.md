@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 uv sync                              # install dependencies (dev group includes pytest, ruff, mypy)
-uv run pytest -v                     # run all 411 tests
+uv run pytest -v                     # run all 427 tests
 uv run pytest tests/test_chapter_04_sejm_senate.py -v   # run tests for one chapter
 uv run pytest -k "test_quorum" -v    # run tests matching a keyword
 uv run ruff check src tests          # lint (line-length 100, target py312)
@@ -32,7 +32,7 @@ Every public function follows the same contract:
 ### Module layout
 
 - `src/konstytucja/common/types.py` — Domain model: 13 enums + 11 frozen dataclasses. All dataclasses are `frozen=True`.
-- `src/konstytucja/common/errors.py` — 21 exception classes, all inheriting `ConstitutionalError(message, article=)`.
+- `src/konstytucja/common/errors.py` — 22 exception classes, all inheriting `ConstitutionalError(message, article=)`.
 - `src/konstytucja/common/voting.py` — Quorum check and 4 majority types (simple, absolute, 2/3, 3/5). All vote math uses integer arithmetic to avoid float rounding.
 - `src/konstytucja/common/__init__.py` — Re-exports everything from types, errors, and voting.
 - `src/konstytucja/chapter_XX_*.py` — One module per constitutional chapter (12 total), articles mapped in order.
