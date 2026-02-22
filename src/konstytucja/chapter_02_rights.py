@@ -3,12 +3,23 @@
 Art. 31 ust. 3 — test proporcjonalności ograniczenia praw i wolności.
 Art. 31(3) — proportionality test for restricting rights and freedoms.
 
+Art. 38 [projekt nowelizacji 2007, odrzucony] — ochrona życia od poczęcia.
+Art. 38 [proposed amendment 2007, rejected] — life protection from conception.
+
 Art. 55 [nowelizacja 2006] — zasady ekstradycji.
 Art. 55 [2006 amendment] — extradition rules.
 """
 
-from konstytucja.common.errors import ExtraditionError, RightsRestrictionError
-from konstytucja.common.types import ExtraditionRequest, RightsRestriction
+from konstytucja.common.errors import (
+    ExtraditionError,
+    LifeProtectionError,
+    RightsRestrictionError,
+)
+from konstytucja.common.types import (
+    ExtraditionRequest,
+    LifeProtectionClaim,
+    RightsRestriction,
+)
 
 
 def validate_rights_restriction(restriction: RightsRestriction) -> bool:
@@ -66,6 +77,66 @@ def validate_rights_restriction(restriction: RightsRestriction) -> bool:
         )
 
     return True
+
+
+# ---------------------------------------------------------------------------
+# Protection of life — Art. 38 [proposed amendment 2007, rejected]
+# ---------------------------------------------------------------------------
+
+
+def validate_life_protection(claim: LifeProtectionClaim) -> bool:
+    """Validate a life protection claim under the proposed Art. 38 amendment.
+
+    Art. 38 [obowiązujący / current text]:
+    Rzeczpospolita Polska zapewnia każdemu człowiekowi prawną ochronę życia.
+
+    Art. 38 [current text]:
+    The Republic of Poland shall ensure the legal protection of the life
+    of every human being.
+
+    Art. 38 [projekt nowelizacji — Druk nr 993, 5 września 2006 r.,
+    odrzucony 13 kwietnia 2007 r.]:
+    Rzeczpospolita Polska zapewnia każdemu człowiekowi prawną ochronę
+    życia od chwili poczęcia.
+
+    Art. 38 [proposed amendment — Sejm Print 993, 5 September 2006,
+    rejected 13 April 2007]:
+    The Republic of Poland shall ensure the legal protection of the life
+    of every human being from the moment of conception.
+
+    Under the *proposed* (rejected) wording, protection would extend
+    explicitly to conceived but unborn human beings.  Under the *current*
+    wording, Art. 38 guarantees protection to "every human being" without
+    specifying the starting point, leaving the question open to
+    legislative and judicial interpretation.
+
+    This function encodes the **proposed** rule: protection applies from
+    the moment of conception.
+
+    Args:
+        claim: The life protection claim to evaluate.
+
+    Returns:
+        True if the claim is covered by the proposed Art. 38.
+
+    Raises:
+        LifeProtectionError: if the proposed rule would deny protection.
+    """
+    # Under the proposed amendment, both born and conceived beings
+    # receive legal protection of life.
+    if claim.is_born:
+        return True
+
+    if claim.is_conceived:
+        # The proposed "od chwili poczęcia" extends protection here.
+        return True
+
+    # Neither born nor conceived — outside scope of Art. 38
+    raise LifeProtectionError(
+        "Legal protection of life under Art. 38 requires the human being "
+        "to be at least conceived (od chwili poczęcia)",
+        article="38",
+    )
 
 
 # ---------------------------------------------------------------------------

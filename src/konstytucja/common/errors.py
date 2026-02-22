@@ -159,6 +159,13 @@ class TribunalError(ConstitutionalError):
     """
 
 
+class LifeProtectionError(ConstitutionalError):
+    """Naruszenie prawnej ochrony życia — life protection violation.
+
+    Art. 38.
+    """
+
+
 class ExtraditionError(ConstitutionalError):
     """Naruszenie zasad ekstradycji — extradition rule violation.
 

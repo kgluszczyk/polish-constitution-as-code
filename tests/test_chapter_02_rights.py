@@ -2,9 +2,21 @@
 
 import pytest
 
-from konstytucja.chapter_02_rights import validate_extradition, validate_rights_restriction
-from konstytucja.common.errors import ExtraditionError, RightsRestrictionError
-from konstytucja.common.types import ExtraditionRequest, RightsRestriction
+from konstytucja.chapter_02_rights import (
+    validate_extradition,
+    validate_life_protection,
+    validate_rights_restriction,
+)
+from konstytucja.common.errors import (
+    ExtraditionError,
+    LifeProtectionError,
+    RightsRestrictionError,
+)
+from konstytucja.common.types import (
+    ExtraditionRequest,
+    LifeProtectionClaim,
+    RightsRestriction,
+)
 
 
 class TestArt31ProportionalityTest:
@@ -98,6 +110,51 @@ class TestArt31ProportionalityTest:
         assert "legitimate aim" in msg
         assert "not proportionate" in msg
         assert "violates the essence" in msg
+
+
+# ---------------------------------------------------------------------------
+# Art. 38: Life protection [proposed amendment 2007, rejected]
+# ---------------------------------------------------------------------------
+
+
+class TestArt38LifeProtection:
+    """Art. 38 [proposed amendment 2007, rejected]: Life protection from conception."""
+
+    def test_born_person_protected(self):
+        """A born human being is protected under Art. 38."""
+        claim = LifeProtectionClaim(is_born=True, description="born person")
+        assert validate_life_protection(claim) is True
+
+    def test_conceived_person_protected(self):
+        """Under the proposed amendment, conceived beings are explicitly protected."""
+        claim = LifeProtectionClaim(
+            is_born=False,
+            is_conceived=True,
+            description="conceived but unborn",
+        )
+        assert validate_life_protection(claim) is True
+
+    def test_not_conceived_raises(self):
+        """Neither born nor conceived — outside scope of Art. 38."""
+        claim = LifeProtectionClaim(
+            is_born=False,
+            is_conceived=False,
+            description="hypothetical future being",
+        )
+        with pytest.raises(LifeProtectionError, match="conceived") as exc_info:
+            validate_life_protection(claim)
+        assert exc_info.value.article == "38"
+
+    def test_born_takes_precedence(self):
+        """Born person is protected regardless of is_conceived flag."""
+        claim = LifeProtectionClaim(is_born=True, is_conceived=True)
+        assert validate_life_protection(claim) is True
+
+    def test_error_message_cites_polish_term(self):
+        """Error message includes Polish term 'od chwili poczęcia'."""
+        claim = LifeProtectionClaim(is_born=False, is_conceived=False)
+        with pytest.raises(LifeProtectionError, match="od chwili poczęcia"):
+            validate_life_protection(claim)
 
 
 # ---------------------------------------------------------------------------
@@ -297,3 +354,4 @@ class TestArt55Extradition:
             validate_extradition(req)
         # Art. 55(4) should fire first, not 55(5)
         assert exc_info.value.article == "55(4)"
+

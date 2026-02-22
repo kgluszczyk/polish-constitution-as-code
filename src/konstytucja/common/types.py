@@ -326,6 +326,29 @@ class OversightAppointment:
 
 
 @dataclass(frozen=True)
+class LifeProtectionClaim:
+    """Roszczenie o ochronę życia / Life protection claim (Art. 38).
+
+    Art. 38 [projekt nowelizacji — Druk nr 993, 5 września 2006 r.,
+    odrzucony 13 kwietnia 2007 r.]:
+    Rzeczpospolita Polska zapewnia każdemu człowiekowi prawną ochronę
+    życia od chwili poczęcia.
+
+    Art. 38 [proposed amendment — Sejm Print 993, 5 September 2006,
+    rejected 13 April 2007]:
+    The Republic of Poland shall ensure the legal protection of the life
+    of every human being from the moment of conception.
+
+    NOTE: This encodes a *rejected* amendment proposal. The current
+    constitutional text reads: "Rzeczpospolita Polska zapewnia każdemu
+    człowiekowi prawną ochronę życia." (without "od chwili poczęcia").
+    """
+    is_born: bool                     # whether the human being has been born
+    is_conceived: bool = False        # whether conception has occurred
+    description: str = ""             # context of the claim
+
+
+@dataclass(frozen=True)
 class ExtraditionRequest:
     """Wniosek o ekstradycję / Extradition request (Art. 55).
 

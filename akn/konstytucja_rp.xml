@@ -121,6 +121,17 @@
             </content>
           </paragraph>
         </article>
+
+        <article eId="art_38">
+          <num>Art. 38.</num>
+          <content>
+            <p>Rzeczpospolita Polska zapewnia każdemu człowiekowi prawną ochronę życia.</p>
+            <p xml:lang="en">The Republic of Poland shall ensure the legal protection of the life of every human being.</p>
+          </content>
+          <!-- Proposed amendment (Druk nr 993, 5 September 2006, rejected 13 April 2007):
+               "Rzeczpospolita Polska zapewnia każdemu człowiekowi prawną ochronę życia od chwili poczęcia."
+               "The Republic of Poland shall ensure the legal protection of the life of every human being from the moment of conception." -->
+        </article>
       </chapter>
 
       <!-- ============================================================ -->
