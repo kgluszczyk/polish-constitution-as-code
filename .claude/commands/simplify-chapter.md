@@ -77,3 +77,17 @@ End with:
 > **Note:** This simplification is for readability only. It is NOT a proposed
 > amendment. The original constitutional text remains the binding version.
 > Articles not yet implemented in code are skipped.
+
+### 5. Offer to draft as amendment
+
+After presenting all simplifications, ask the user:
+
+> "Want me to turn any of these simplifications into formal amendment
+> proposals? Specify which article(s), or say 'all' for the whole chapter."
+
+**Only proceed if the user confirms.** If they confirm, invoke the
+`/draft-amendment` skill for each selected article with the simplified text
+as the intention. Each will:
+- Create a branch, generate code, run validation, and ask about a PR
+- If multiple articles are selected, group them in a single branch as one
+  amendment act (matching how real omnibus amendments work)

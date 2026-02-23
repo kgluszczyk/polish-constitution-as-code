@@ -86,3 +86,17 @@ End with:
 
 > **Note:** This simplification is for readability only. It is NOT a proposed
 > amendment. The original constitutional text remains the binding version.
+
+### 6. Offer to draft as amendment
+
+After presenting the simplification, ask the user:
+
+> "Want me to turn this simplification into a formal amendment proposal?
+> I'll create a branch, write the code, and optionally open a PR."
+
+**Only proceed if the user confirms.** If they confirm, invoke the
+`/draft-amendment` skill with the simplified text as the intention. This will:
+- Create a `feat/nowelizacja-proposal-YYYY-artNN-simplification` branch
+- Generate code with the simplified text in bilingual docstrings
+- Run validation
+- Ask about opening a PR
