@@ -177,6 +177,34 @@ Execute `/validate-amendment` checks:
 - All docstrings are bilingual
 - All new types are frozen
 
+### Step 9: Ask user about PR
+
+After validation passes, ask the user:
+
+> "Amendment drafted and validated on branch `feat/nowelizacja-proposal-...`.
+> Want me to push and open a PR?"
+
+**Only proceed if the user confirms.** Do NOT push or create a PR without
+explicit approval.
+
+If the user confirms:
+
+1. Push the branch: `git push -u origin <branch-name>`
+2. Create a PR using the nowelizacja template at
+   `.github/PULL_REQUEST_TEMPLATE/nowelizacja.md`:
+   - Fill in all template fields:
+     - Article(s) affected, date, Dz.U. citation (or "Proposed — YYYY")
+     - Polish and English text from docstrings (in collapsible sections)
+     - Before/after comparison table
+     - Code changes checklist (mark completed items)
+     - Validation results (mark passing checks)
+     - Scholarly notes: include the impact analysis from Step 3
+   - Use `gh pr create --title "..." --body "..."` with the filled template
+3. Return the PR URL to the user
+
+If the user declines, confirm the branch is ready and remind them they can
+push and create a PR later.
+
 ## Mandatory Rules
 
 - ALWAYS review the entire constitution before writing code. Missed overlaps

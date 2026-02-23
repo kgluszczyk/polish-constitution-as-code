@@ -141,6 +141,29 @@ class TestArtNNDescription:
 feat(chapter_XX): Encode Art. NN [amendment year] — short description
 ```
 
+### Step 7: Ask user about PR
+
+After committing, ask the user:
+
+> "Amendment committed on branch `feat/nowelizacja-...`. Want me to push and
+> open a PR?"
+
+**Only proceed if the user confirms.** Do NOT push or create a PR without
+explicit approval.
+
+If the user confirms:
+
+1. Push the branch: `git push -u origin <branch-name>`
+2. Create a PR using the nowelizacja template at
+   `.github/PULL_REQUEST_TEMPLATE/nowelizacja.md`:
+   - Fill in the template fields (article number, legal reference, Polish/English
+     text from docstrings, before/after table, code changes checklist, validation
+     results)
+   - Use `gh pr create --title "..." --body "..."` with the filled template
+3. Return the PR URL to the user
+
+If the user declines, just confirm the branch is ready for later.
+
 ## Mandatory Rules
 
 - ALL dataclasses MUST be `frozen=True`
