@@ -1,3 +1,9 @@
+---
+name: simplify-article
+description: Rewrite a constitutional article in plain, modern language — preserving exact legal meaning while making it accessible. Use when the user asks to simplify, explain, or make an article more readable.
+argument-hint: "[article-number]"
+---
+
 # /simplify-article — Plain-language restatement of a constitutional article
 
 Rewrite a single constitutional article in plain, modern language — preserving

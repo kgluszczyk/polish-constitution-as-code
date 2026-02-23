@@ -1,3 +1,8 @@
+---
+name: amendment-to-text
+description: Convert code changes on the current amendment branch back to formal legal amendment text. Use when the user wants to see the legal text version of code changes, generate a formal ustawa, or produce AKN XML from code.
+---
+
 Read the git diff of the current branch against `main` and generate formal legal amendment text based on the code changes.
 
 ## Process
