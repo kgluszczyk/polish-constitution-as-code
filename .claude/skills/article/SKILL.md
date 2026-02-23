@@ -1,3 +1,9 @@
+---
+name: article
+description: Look up a constitutional article by number. Use when the user asks about a specific article, wants to see its legal text, implementation, tests, or AKN XML status.
+argument-hint: "[article-number]"
+---
+
 # /article — Look up a constitutional article
 
 Given an article number, display everything the codebase knows about it:

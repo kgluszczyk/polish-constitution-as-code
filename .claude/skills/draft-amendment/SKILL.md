@@ -1,3 +1,10 @@
+---
+name: draft-amendment
+description: Draft a constitutional amendment from a policy intention.
+disable-model-invocation: true
+argument-hint: "[policy-intention]"
+---
+
 # /draft-amendment — Draft an amendment from a policy intention
 
 The user describes what they want to achieve (a policy goal or intention), and
@@ -122,7 +129,7 @@ W Konstytucji Rzeczypospolitej Polskiej z dnia 2 kwietnia 1997 r.
 1) art. N otrzymuje brzmienie:
    "Art. N. <new text>";
 
-2) w art. M ust. P otrzymuje brzmienie:
+2) na art. M ust. P otrzymuje brzmienie:
    "<new text>";
 
 [if transitional provisions needed]

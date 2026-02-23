@@ -1,3 +1,10 @@
+---
+name: text-to-amendment
+description: Convert a legal amendment text into code changes for the polish-constitution-as-code repository.
+disable-model-invocation: true
+argument-hint: "[amendment-text-or-citation]"
+---
+
 Convert a legal amendment text into code changes for the polish-constitution-as-code repository.
 
 ## Input

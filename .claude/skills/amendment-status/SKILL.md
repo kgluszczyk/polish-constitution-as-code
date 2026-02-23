@@ -1,3 +1,8 @@
+---
+name: amendment-status
+description: Show the status of the current constitutional amendment branch. Use when working on an amendment branch and the user asks about progress, what files are changed, or what's missing.
+---
+
 Show the status of the current constitutional amendment branch.
 
 ## Steps

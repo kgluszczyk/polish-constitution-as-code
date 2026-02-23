@@ -1,3 +1,9 @@
+---
+name: simplify-chapter
+description: Rewrite all implemented articles in a constitutional chapter in plain, modern language — preserving exact legal meaning while making it accessible. Use when the user asks to simplify or explain an entire chapter.
+argument-hint: "[chapter-number]"
+---
+
 # /simplify-chapter — Plain-language restatement of an entire chapter
 
 Rewrite all implemented articles in a constitutional chapter in plain, modern

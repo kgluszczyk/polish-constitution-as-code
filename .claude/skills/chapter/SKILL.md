@@ -1,3 +1,9 @@
+---
+name: chapter
+description: Overview of a constitutional chapter's implementation status. Use when the user asks about a chapter, wants to see which articles are implemented, test coverage, or gaps.
+argument-hint: "[chapter-number]"
+---
+
 # /chapter — Overview of a constitutional chapter
 
 Given a chapter number (or name), show all implemented articles, test coverage,

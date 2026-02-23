@@ -1,3 +1,9 @@
+---
+name: validate-amendment
+description: Run full validation suite on the current amendment branch.
+disable-model-invocation: true
+---
+
 Validate the current branch's constitutional amendment against codebase conventions and constitutional accuracy requirements.
 
 ## Steps
